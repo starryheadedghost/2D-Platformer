@@ -30,15 +30,27 @@ public class PlayerController2D : MonoBehaviour
 
     public bool doubleJump;
 
+    [Header("Animations")]
+    private Animator playerAnimation;
+
     // Start is called before the first frame update
     void Start()
     {
         //get rigidbody componant wowow
         rb = GetComponent<Rigidbody2D>();
+        playerAnimation = GetComponent<Animator>();
     }
 
     void FixedUpdate()
     {
+        if(moveInput > 0 || moveInput <0)
+        {
+            playerAnimation.SetBool("isWalking", true);
+        }
+        else 
+        {
+            playerAnimation.SetBool("isWalking", false);
+        }
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, checkRadius, whatIsGround); //define what is ground
 
         moveInput = Input.GetAxis("Horizontal"); //get horizontal key binding 
