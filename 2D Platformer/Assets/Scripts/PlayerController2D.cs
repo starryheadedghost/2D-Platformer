@@ -89,10 +89,12 @@ public class PlayerController2D : MonoBehaviour
         {
             rb.velocity = Vector2.up * jumpForce; //make player jump
             doubleJump = false;
+            playerAnimation.SetTrigger("Jump_Trig");
         }
         else if(Input.GetKeyDown(KeyCode.Space) && !doubleJump && isGrounded)
         {
             rb.velocity = Vector2.up * jumpForce; //apply jumpforce to player make player jump 
+            playerAnimation.SetTrigger("Jump_Trig");
         }
     }
 }
